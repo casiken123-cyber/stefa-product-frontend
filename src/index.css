@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap");
+
+/* Page width: change --page-max to make the content narrower or wider */
+:root {
+  --page-max: 1680px;
+  --page-gutter: clamp(16px, 4vw, 64px);
+  --page-width: min(var(--page-max), calc(100% - 2 * var(--page-gutter)));
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Background image: the two 0.80 values are a cream wash that keeps text readable.
+   Lower them to show more of the picture, or delete the linear-gradient line. */
+body {
+  background-color: #fafaf7;
+  background-image: url("/images/Backdesign.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #12181b;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(255, 122, 41, 0.25);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid rgba(255, 122, 41, 0.55);
+  outline-offset: 2px;
+}
+
+.page-container {
+  width: var(--page-width);
+  margin: 0 auto;
+  padding: 32px 0 72px;
+  display: block;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+  gap: 28px;
+}
+
+.product-grid > * {
+  animation: card-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.product-grid > *:nth-child(2) { animation-delay: 40ms; }
+.product-grid > *:nth-child(3) { animation-delay: 80ms; }
+.product-grid > *:nth-child(4) { animation-delay: 120ms; }
+.product-grid > *:nth-child(n + 5) { animation-delay: 160ms; }
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .page-container {
+    width: var(--page-width);
+    padding-top: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .product-grid > * {
+    animation: none;
+  }
+}
